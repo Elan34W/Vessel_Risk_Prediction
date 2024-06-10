@@ -102,3 +102,25 @@ print("Prediction:", prediction)
 new_sample1 = {'umur_kapal': 20, 'panjang_kapal': 333, 'lebar_kapal': 60, 'gross_tonnage': 160271, 'deadweight_tonnage': 299868}
 prediction = predict(decision_tree, new_sample1)
 print("Prediction:", prediction)
+
+# Function to input new sample and predict
+def input_new_sample():
+    umur_kapal = int(input("Enter umur kapal (Age of the ship in years): "))
+    panjang_kapal = int(input("Enter panjang kapal (Length of the ship in meters): "))
+    lebar_kapal = int(input("Enter lebar kapal (Width of the ship in meters): "))
+    gross_tonnage = int(input("Enter gross tonnage: "))
+    deadweight_tonnage = int(input("Enter deadweight tonnage: "))
+    
+    new_sample = {
+        'umur_kapal': umur_kapal,
+        'panjang_kapal': panjang_kapal,
+        'lebar_kapal': lebar_kapal,
+        'gross_tonnage': gross_tonnage,
+        'deadweight_tonnage': deadweight_tonnage
+    }
+    
+    prediction = predict(decision_tree, new_sample)
+    print("Prediction:", prediction)
+
+# Test predictions with new samples
+input_new_sample()
