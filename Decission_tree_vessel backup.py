@@ -113,7 +113,7 @@ print("Prediction:", prediction)
 
 # Function to input new sample and predict
 def input_new_sample():
-    umur_kapal = int(input("Enter umur kapal (Age of the ship in years): "))
+    umur_kapal = int(input("\nEnter umur kapal (Age of the ship in years): "))
     panjang_kapal = int(input("Enter panjang kapal (Length of the ship in meters): "))
     lebar_kapal = int(input("Enter lebar kapal (Width of the ship in meters): "))
     gross_tonnage = int(input("Enter gross tonnage: "))
