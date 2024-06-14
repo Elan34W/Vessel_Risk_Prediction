@@ -50,6 +50,10 @@ def find_best_split(data):
                     best_gini = gini
                     best_attribute = attribute
                     best_threshold = threshold
+    if best_attribute is None or best_threshold is None:
+        print("No valid split found.")
+    else:
+        print(f"Best split found on attribute {best_attribute} with threshold {best_threshold}")
     return best_attribute, best_threshold
 
 # Function to split the data based on an attribute and threshold
@@ -90,26 +94,26 @@ def predict(tree, sample):
 # Build the decision tree from the data
 decision_tree = build_tree(data)
 
-# Test predictions with new samples
-new_sample = {
-    'umur_kapal': 8,
-    'panjang_kapal': 170, 
-    'lebar_kapal': 16, 
-    'gross_tonnage': 900, 
-    'deadweight_tonnage': 400
-    }
-prediction = predict(decision_tree, new_sample)
-print("Prediction:", prediction)
+# # Test predictions with new samples
+# new_sample = {
+#     'umur_kapal': 8,
+#     'panjang_kapal': 170, 
+#     'lebar_kapal': 16, 
+#     'gross_tonnage': 900, 
+#     'deadweight_tonnage': 400
+#     }
+# prediction = predict(decision_tree, new_sample)
+# print("Prediction:", prediction)
 
-new_sample1 = {
-    'umur_kapal': 16, 
-    'panjang_kapal': 300, 
-    'lebar_kapal': 60, 
-    'gross_tonnage': 160271, 
-    'deadweight_tonnage': 299868
-    }
-prediction = predict(decision_tree, new_sample1)
-print("Prediction:", prediction)
+# new_sample1 = {
+#     'umur_kapal': 16, 
+#     'panjang_kapal': 300, 
+#     'lebar_kapal': 60, 
+#     'gross_tonnage': 160271, 
+#     'deadweight_tonnage': 299868
+#     }
+# prediction = predict(decision_tree, new_sample1)
+# print("Prediction:", prediction)
 
 # Function to input new sample and predict
 def input_new_sample():
@@ -133,55 +137,57 @@ def input_new_sample():
 # Test predictions with new samples
 input_new_sample()
 
-# def print_tree(tree, indent=''):
-#     if 'kelas' in tree:
-#         print(indent + "Leaf Node: " + tree['kelas'])
-#     else:
-#         print(indent + f"Split: {tree['splitting_attribute']} <= {tree['threshold']}")
-#         print(indent + 'Left Subtree:')
-#         print_tree(tree['left_subtree'], indent + '  ')
-#         print(indent + 'Right Subtree:')
-#         print_tree(tree['right_subtree'], indent + '  ')
+def print_tree(tree, indent=''):
+    if 'kelas' in tree:
+        print(indent + "Leaf Node: " + tree['kelas'])
+    else:
+        print(indent + f"Split: {tree['splitting_attribute']} <= {tree['threshold']}")
+        print(indent + 'Left Subtree:')
+        print_tree(tree['left_subtree'], indent + '  ')
+        print(indent + 'Right Subtree:')
+        print_tree(tree['right_subtree'], indent + '  ')
 
-# # Print the decision tree structure
-# print_tree(decision_tree)
+# Print the decision tree structure
+print("\nDecision Tree Structure:")
+print_tree(decision_tree)
 
-# sample_akurasi1 = {'umur_kapal': 5, 'panjang_kapal': 137, 'lebar_kapal': 23, 'gross_tonnage': 10461, 'deadweight_tonnage': 11164}
-# prediction = predict(decision_tree, sample_akurasi1)
-# print("Prediction:", prediction)
+print("\nAkurasi Prediksi")
+sample_akurasi1 = {'umur_kapal': 5, 'panjang_kapal': 137, 'lebar_kapal': 23, 'gross_tonnage': 10461, 'deadweight_tonnage': 11164}
+prediction = predict(decision_tree, sample_akurasi1)
+print("Prediction:", prediction)
 
-# sample_akurasi2 = {'umur_kapal': 12, 'panjang_kapal': 333, 'lebar_kapal': 60, 'gross_tonnage': 161513, 'deadweight_tonnage': 318123}
-# prediction = predict(decision_tree, sample_akurasi2)
-# print("Prediction:", prediction)
+sample_akurasi2 = {'umur_kapal': 12, 'panjang_kapal': 333, 'lebar_kapal': 60, 'gross_tonnage': 161513, 'deadweight_tonnage': 318123}
+prediction = predict(decision_tree, sample_akurasi2)
+print("Prediction:", prediction)
 
-# sample_akurasi3 = {'umur_kapal': 8, 'panjang_kapal': 333, 'lebar_kapal': 60, 'gross_tonnage': 161319, 'deadweight_tonnage': 300932}
-# prediction = predict(decision_tree, sample_akurasi3)
-# print("Prediction:", prediction)
+sample_akurasi3 = {'umur_kapal': 8, 'panjang_kapal': 333, 'lebar_kapal': 60, 'gross_tonnage': 161319, 'deadweight_tonnage': 300932}
+prediction = predict(decision_tree, sample_akurasi3)
+print("Prediction:", prediction)
 
-# sample_akurasi4 = {'umur_kapal': 38, 'panjang_kapal': 72, 'lebar_kapal': 16, 'gross_tonnage': 2573, 'deadweight_tonnage': 662}
-# prediction = predict(decision_tree, sample_akurasi4)
-# print("Prediction:", prediction)
+sample_akurasi4 = {'umur_kapal': 38, 'panjang_kapal': 72, 'lebar_kapal': 16, 'gross_tonnage': 2573, 'deadweight_tonnage': 662}
+prediction = predict(decision_tree, sample_akurasi4)
+print("Prediction:", prediction)
 
-# sample_akurasi5 = {'umur_kapal': 56, 'panjang_kapal': 41, 'lebar_kapal': 11, 'gross_tonnage': 387, 'deadweight_tonnage': 179}
-# prediction = predict(decision_tree, sample_akurasi5)
-# print("Prediction:", prediction)
+sample_akurasi5 = {'umur_kapal': 56, 'panjang_kapal': 41, 'lebar_kapal': 11, 'gross_tonnage': 387, 'deadweight_tonnage': 179}
+prediction = predict(decision_tree, sample_akurasi5)
+print("Prediction:", prediction)
 
-# sample_akurasi6 = {'umur_kapal': 1, 'panjang_kapal': 230, 'lebar_kapal': 31, 'gross_tonnage': 47653, 'deadweight_tonnage': 8850}
-# prediction = predict(decision_tree, sample_akurasi6)
-# print("Prediction:", prediction)
+sample_akurasi6 = {'umur_kapal': 1, 'panjang_kapal': 230, 'lebar_kapal': 31, 'gross_tonnage': 47653, 'deadweight_tonnage': 8850}
+prediction = predict(decision_tree, sample_akurasi6)
+print("Prediction:", prediction)
 
-# sample_akurasi7 = {'umur_kapal': 14, 'panjang_kapal': 198, 'lebar_kapal': 26, 'gross_tonnage': 32477, 'deadweight_tonnage': 3780}
-# prediction = predict(decision_tree, sample_akurasi7)
-# print("Prediction:", prediction)
+sample_akurasi7 = {'umur_kapal': 14, 'panjang_kapal': 198, 'lebar_kapal': 26, 'gross_tonnage': 32477, 'deadweight_tonnage': 3780}
+prediction = predict(decision_tree, sample_akurasi7)
+print("Prediction:", prediction)
 
-# sample_akurasi8 = {'umur_kapal': 9, 'panjang_kapal': 333, 'lebar_kapal': 60, 'gross_tonnage': 166178, 'deadweight_tonnage': 319896}
-# prediction = predict(decision_tree, sample_akurasi8)
-# print("Prediction:", prediction)
+sample_akurasi8 = {'umur_kapal': 9, 'panjang_kapal': 333, 'lebar_kapal': 60, 'gross_tonnage': 166178, 'deadweight_tonnage': 319896}
+prediction = predict(decision_tree, sample_akurasi8)
+print("Prediction:", prediction)
 
-# sample_akurasi9 = {'umur_kapal': 50, 'panjang_kapal': 111, 'lebar_kapal': 19, 'gross_tonnage': 6991, 'deadweight_tonnage': 855}
-# prediction = predict(decision_tree, sample_akurasi9)
-# print("Prediction:", prediction)
+sample_akurasi9 = {'umur_kapal': 50, 'panjang_kapal': 111, 'lebar_kapal': 19, 'gross_tonnage': 6991, 'deadweight_tonnage': 855}
+prediction = predict(decision_tree, sample_akurasi9)
+print("Prediction:", prediction)
 
-# sample_akurasi10 = {'umur_kapal': 16, 'panjang_kapal': 183, 'lebar_kapal': 32, 'gross_tonnage': 29300, 'deadweight_tonnage': 53160}
-# prediction = predict(decision_tree, sample_akurasi10)
-# print("Prediction:", prediction)
+sample_akurasi10 = {'umur_kapal': 16, 'panjang_kapal': 183, 'lebar_kapal': 32, 'gross_tonnage': 29300, 'deadweight_tonnage': 53160}
+prediction = predict(decision_tree, sample_akurasi10)
+print("Prediction:", prediction)
